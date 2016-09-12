@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" />
+
+	<script type='text/javascript'>//<![CDATA[
+	window.onload=function(){
+	var db = [{
+	  "question": "You are in the middle, there are a number of exits.",
+	  "answers": [{
+		"title": "South",
+		"response": 1
+	  }, {
+		"title": "North",
+		"response": 2
+	  }, {
+		"title": "West",
+		"response": 3
+	  }, {
+		"title": "East",
+		"response": 4
+	  }]
+	}, {
+	  "question": "You are in the South, There is one exit",
+	  "answers": [{
+		"title": "North",
+		"response": 0
+	  }]
+	}, {
+	  "question": "You are in the North, There is one exit",
+	  "answers": [{
+		"title": "South",
+		"response": 0
+	  }]
+	}, {
+	  "question": "You are in the West, There are two exits.",
+	  "answers": [{
+		"title": "East",
+		"response": 0
+	  }, {
+		"title": "West",
+		"response": 5
+	  }]
+	}, {
+	  "question": "You are in the East, There is one exit",
+	  "answers": [{
+		"title": "West",
+		"response": 0
+	  }]
+	}, {
+	  "question": "You are the winner!",
+	  "answers": [{
+		"title": "Start Over",
+		"response": 0
+	  }]
+	}];
+
+	var currentLocation = 0;
+
+	window.printCurrentLocation = function() {
+	  document.getElementById("question").innerHTML = db[currentLocation].question;
+	  var answers = "";
+	  for (var i = 0, l = db[currentLocation].answers.length; i < l; i++) {
+		answers += "<p><button onclick='setLocation(" + db[currentLocation].answers[i].response + ")'>" + db[currentLocation].answers[i].title + "</button></p>";
+	  }
+	  document.getElementById("answers").innerHTML = answers;
+	}
+
+	window.setLocation = function(num) {
+	  currentLocation = num;
+	  window.printCurrentLocation();
+	}
+
+	window.printCurrentLocation();
+
+	}//]]> 
+
+	</script>
+</head>
+
+<body>
+	<script>
+		$(document).ready(function() {
+			$.get("http://www.matthewbarr.co.uk/projects/arc/jquery/welcome.php", function(data, status){
+				document.getElementById("dynamic").innerHTML = data;
+			});
+		});
+	</script>
+	<div id="dynamic"></div>
+	<div>You are standing in a clearing</div>
+	<div id="question"></div>
+	<div id="answers"></div>
+	<div>What do you want to do?</div>
+</body>
+</html>
+
