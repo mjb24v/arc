@@ -9,7 +9,7 @@
   <name>ARC</name>
 
   <description>
-      An example for phonegap build docs.
+      This is ARC.
   </description>
 
   <author href="http://matthewbarr.co.uk" email="matt@matthewbarr.co.uk">
@@ -17,7 +17,10 @@
   </author>
   
   <!-- Don't block any requests -->
-	<access origin="*" />
+  <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+  <access origin="*" />
+  <allow-navigation href="*" />
+  <allow-intent href="*" />
 
 </widget>
 
